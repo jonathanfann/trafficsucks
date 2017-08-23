@@ -15,7 +15,7 @@ var authorize = function() {
             'auth': {
                 'client_id': client_id,
                 'response_type': 'code',
-                'redirect_uri': redirect_uri,
+                'redirect_uri': redirect_uri
             }
         })
         .on('response', function(res) {
@@ -28,8 +28,7 @@ var token = function () {
     if (authorization_code != null) {
         request.post('https://accounts.spotify.com/api/token', {
             'auth': {
-                'grant_type': authorization_code,
-
+                'grant_type': authorization_code
             }
         })
     } else {
