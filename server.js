@@ -44,6 +44,7 @@ app.get('/', function (req, res) {
 
 app.get('/callback', function (req, res) {
     access_token = req.query.code;
+    token();
     console.log('aw yeah that callback tho');
     res.send('yay' + access_token);
 })
