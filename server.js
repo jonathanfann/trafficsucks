@@ -1,6 +1,6 @@
 var express = require('express'),
     request = require('request'),
-    secrets = require('config/secrets.js'),
+    secrets = require('./config/secrets'),
     app = express();
 
 var client_id = secrets.client_id,
@@ -49,3 +49,4 @@ app.get('/callback', function (req, res) {
 })
 
 app.listen(8888);
+console.log('listenin\' at 8888 so get hoppin on that browser');
