@@ -1,3 +1,3 @@
 # README #
 
-I am close to having functional code.
+Traffic Sucks.  So we're gonna see about that.  And let you know.

@@ -1,7 +1,7 @@
 {
-  "name": "spotifynew",
+  "name": "trafficsucks",
   "version": "1.0.0",
-  "description": "thing to do things with spotify",
+  "description": "check to see if traffic sucks",
   "main": "server.js",
   "dependencies": {
     "express": "^4.15.4",
@@ -13,5 +13,18 @@
     "start": "node server.js"
   },
   "author": "jonathan fann",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jonathanfann/trafficsucks.git"
+  },
+  "keywords": [
+    "traffic",
+    "sucks",
+    "fann"
+  ],
+  "bugs": {
+    "url": "https://github.com/jonathanfann/trafficsucks/issues"
+  },
+  "homepage": "https://github.com/jonathanfann/trafficsucks#readme"
 }

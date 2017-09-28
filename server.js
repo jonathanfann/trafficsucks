@@ -1,51 +1,29 @@
 var express = require('express'),
     request = require('request'),
-    secrets = require('./config/secrets'),
+    secrets = require('./config/index.js'),
+    nunjucks = require('nunjucks'),
     app = express();
 
-var client_id = secrets.client_id,
-    client_secret = secrets.client_secret,
-    redirect_uri = 'http://localhost:8888/callback',
-    authorization_code,
-    access_token;
+var api_key = secrets.api_key;
 
-var authorize = function() {
-    request
-        .get('https://accounts.spotify.com/authorize', {
-            'auth': {
-                'client_id': client_id,
-                'response_type': 'code',
-                'redirect_uri': redirect_uri
-            }
-        })
-        .on('response', function(res) {
-            console.log(res);
-            authorization_code = res.code;
-        })
-};
+var trafficViewApiUrl = 'api.trafficview.org/event/?api-key=' + api_key;
 
-var token = function () {
-    if (authorization_code != null) {
-        request.post('https://accounts.spotify.com/api/token', {
-            'auth': {
-                'grant_type': authorization_code
-            }
-        })
-    } else {
-        console.log('aint set the auth code');
-    }
-};
+function getData(done) {
+    request.get(trafficViewApiUrl, function(err, res) {
+        done(err, res);
+    });
+}
 
 app.get('/', function (req, res) {
-    authorize();
-    res.send('hello world');
+    getData(function(err, data) {
+        console.log(err);
+        console.log(data);
+        res.send(data.body);
+    });
 })
 
-app.get('/callback', function (req, res) {
-    access_token = req.query.code;
-    token();
-    console.log('aw yeah that callback tho');
-    res.send('yay' + access_token);
+app.get('/system/:systemId', function (req, res) {
+  res.send(req.params);
 })
 
 app.listen(8888);
